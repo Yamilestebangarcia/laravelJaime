@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\empresa;
 use App\Http\Controllers\login;
 use App\Http\Controllers\main;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,4 @@ Route::get('datosRegistro', [login::class, "dataRegister"])->name("dataRegister"
 Route::get('mainAdmin', [admin::class, "mainAdmin"])->name("mainAdmin")->middleware("auth");
 Route::get('crearEmpresa', [admin::class, "crearEmpresa"])->name("crearEmpresa")->middleware("auth");
 Route::post('crearEmpresaPost', [admin::class, "crearEmpresaPost"])->name("crearEmpresaPost")->middleware("auth");
-Route::get('mainEmpresa', [login::class, "mainEmpresa"])->name("mainEmpresa")->middleware("auth");
+Route::get('mainEmpresa', [empresa::class, "mainEmpresa"])->name("mainEmpresa")->middleware("auth");

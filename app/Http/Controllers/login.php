@@ -26,11 +26,17 @@ class login extends Controller
         $request->session()->regenerateToken();
         $user = User::create(["email" => $request->email, "password" => "yamil"]);
         auth()->login($user);;
-        return "registrado";
+        return redirect()->route("dataRegister");
     }
     public function login()
     {
-        return view("login/login");
+        if (Auth::check()) {
+            if (Auth()) {
+            }
+            return redirect()->route("mainEmpresa");
+        } else {
+            return view("login/login");
+        }
     }
     public function loginPost(loginRequest $request)
     {
@@ -43,6 +49,7 @@ class login extends Controller
             $expire = $fecha->modify(env("JWT_EXPIRE"))->getTimestamp();
             $data  = [
                 "id" => $user[0]->id,
+                "verified" => $user[0]->email_verified,
                 'iat' => $fecha->getTimestamp(),
                 'nbf' => $fecha->getTimestamp(),
                 "exp" => $expire
@@ -73,27 +80,25 @@ class login extends Controller
                     throw new Exception('Token invalido, intentalo otra vez');
                 }
 
+                //el valor del passwor debe de ser una variable de entorno  y fuerte 
                 if (Auth::attempt(['email' => $user->email, "password" => "yamil"])) {
-                    // return "logeado";
+
+
+                    return redirect()->route("mainEmpresa");
                 } else {
 
-                    //  return "no ";
+                    return redirect()->route("login")->with("info", "Token invalido, intentalo otra vez");
                 }
             } catch (Exception  $err) {
                 print($err);
                 return redirect()->route("login")->with("info", "Token invalido, intentalo otra vez");
             }
-            if ($user->autorizado) {
-                return redirect()->route("mainEmpresa");
-            } else {
-                return redirect()->route("dataRegister");
-            }
         }
 
-        return "entrado";
+        return redirect()->route("login")->with("info", "no existe token");
     }
     public function dataRegister()
     {
-        return "registro";
+        return view("empresa.formRegistro");
     }
 }

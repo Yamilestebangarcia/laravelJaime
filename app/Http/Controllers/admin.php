@@ -17,7 +17,7 @@ class admin extends Controller
 {
     public function crearEmpresa()
     {
-        Auth:
+
         return view("admin.crearEmpresa");
     }
 
@@ -53,6 +53,7 @@ class admin extends Controller
     }
     public function mainAdmin()
     {
+        //comprobar que esta validado //consulta a la bd del campo email_verified
         return view("admin.main");
     }
 }

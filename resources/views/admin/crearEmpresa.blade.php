@@ -16,5 +16,5 @@
         @enderror
         <button type="submit">crear</button>
     </form>
-    @Auth::user()
+
 @endsection
