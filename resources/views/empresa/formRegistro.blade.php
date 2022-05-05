@@ -1,4 +1,4 @@
-@extends('empresa.plantilla')
+@extends('layouts.plantilla')
 @section('titulo')
     datos de la empresa
 @endsection

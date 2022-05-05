@@ -1,4 +1,4 @@
-@extends('admin.plantilla')
+@extends('layouts.plantilla')
 @section('titulo')
     crear empresa
 @endsection

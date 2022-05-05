@@ -1,4 +1,4 @@
-@extends('login.plantilla')
+@extends('layouts.plantilla')
 @section('titulo')
     login
 @endsection
@@ -11,9 +11,9 @@
     @enderror
 
 
-    <button type="submit">login</button> 
+    <button type="submit">login</button>
 </form>
 @if (session("info"))
 <p>{{session("info")}} </p>
 @endif
-@endsection 
+@endsection
