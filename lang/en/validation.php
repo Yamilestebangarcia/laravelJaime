@@ -39,20 +39,20 @@ return [
     'declined' => 'The :attribute must be declined.',
     'declined_if' => 'The :attribute must be declined when :other is :value.',
     'different' => 'The :attribute and :other must be different.',
-    'digits' => 'The :attribute must be :digits digits.',
+    'digits' => 'El :attribute debe de tener :digits digitos.',
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => 'El :attribute debe tener un formato valido.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
-    'exists' => 'The selected :attribute is invalid.',
+    'exists' => 'El :attribute no puede ser cambiado',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'array' => 'The :attribute must have more than :value items.',
         'file' => 'The :attribute must be greater than :value kilobytes.',
-        'numeric' => 'The :attribute must be greater than :value.',
+        'numeric' => 'El :attribute debe de debe de tener mas de :value.',
         'string' => 'The :attribute must be greater than :value characters.',
     ],
     'gte' => [
@@ -85,7 +85,7 @@ return [
     'max' => [
         'array' => 'The :attribute must not have more than :max items.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'numeric' => 'The :attribute must not be greater than :max.',
+        'numeric' => 'El :attribute no debe tener mas de :max digitos.',
         'string' => 'El :attribute debe tener como maximo :max caracteres.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -93,13 +93,13 @@ return [
     'min' => [
         'array' => 'The :attribute must have at least :min items.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => 'El :attribute debe de tener al menos :min digito.',
         'string' => 'The :attribute must be at least :min characters.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
-    'numeric' => 'The :attribute must be a number.',
+    'numeric' => 'El :attribute debe de tener solo digitos.',
     'password' => [
         'mixed' => 'The :attribute must contain at least one uppercase and one lowercase letter.',
         'letters' => 'The :attribute must contain at least one letter.',
@@ -133,7 +133,7 @@ return [
     'timezone' => 'The :attribute must be a valid timezone.',
     'unique' => 'El :attribute ya ha sido usado.',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute must be a valid URL.',
+    'url' => 'La :attribute debe de tener una URL valida.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*

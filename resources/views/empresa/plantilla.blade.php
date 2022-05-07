@@ -7,6 +7,7 @@
     <title>@yield('titulo')</title>
 </head>
 <body>
+    <a href="{{Route("cerrar")}}">cerrar sesion</a>
     @yield('contenido')
 </body>
 </html>

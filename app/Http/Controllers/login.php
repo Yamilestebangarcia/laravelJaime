@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\registroRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\LoginMail;
+
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +25,9 @@ class login extends Controller
     }
     public function registroPost(registroRequest $request)
     {
+        //no le pasa nada es que no hace falta mandar un email, 
+        //ya que directamente entra en la platforma para rellenar los datos
+
         $request->session()->regenerateToken();
         $user = User::create(["email" => $request->email, "password" => "yamil"]);
         auth()->login($user);;
@@ -97,8 +102,9 @@ class login extends Controller
 
         return redirect()->route("login")->with("info", "no existe token");
     }
-    public function dataRegister()
+    public function cerrar()
     {
-        return view("empresa.formRegistro");
+        Auth::logout();
+        return redirect()->route("login")->with("info", "Sesion cerrada");
     }
 }
