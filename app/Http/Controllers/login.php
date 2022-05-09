@@ -80,7 +80,7 @@ class login extends Controller
                     throw new Exception('Token invalido, intentalo otra vez');
                 }
 
-                //el valor del passwor debe de ser una variable de entorno  y fuerte 
+                //el valor del passwor debe de ser una variable de entorno  y fuerte
                 if (Auth::attempt(['email' => $user->email, "password" => "yamil"])) {
 
 

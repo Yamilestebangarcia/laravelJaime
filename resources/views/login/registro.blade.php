@@ -14,6 +14,12 @@
     <button type="submit">registrarse</button> 
 </form>
 @if (session("info"))
+<<<<<<< HEAD
 <p>{{session("info")}} </p>
+=======
+
+<p>{{session("info")}} </p>
+
+>>>>>>> yamil/main
 @endif
 @endsection 

@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('nif')->unique();
             $table->string('nombre');
             $table->string('cargo');
-            $table->string('correo')->unique();
-            $table->string('telefono')->unique();
+            $table->string('correo');
+            $table->string('telefono');
             $table->boolean('activo');
             $table->timestamps();
         });
