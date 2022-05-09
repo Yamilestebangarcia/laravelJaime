@@ -14,6 +14,8 @@
     <button type="submit">registrarse</button> 
 </form>
 @if (session("info"))
+
 <p>{{session("info")}} </p>
+
 @endif
 @endsection 
