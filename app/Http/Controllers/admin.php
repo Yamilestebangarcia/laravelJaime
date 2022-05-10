@@ -9,18 +9,28 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\LoginMail;
+use App\Models\Empresa;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class admin extends Controller
 {
+    // index
+    public function index()
+    {
+        $empresas = DB::table('empresas')->get();
+        return view('admin.main', compact('empresas'));
+    }
+
+    // create
     public function crearEmpresa()
     {
 
         return view("admin.crearEmpresa");
     }
 
+    // create
     public function crearEmpresaPost(CrearEmprRequest $request)
     {
         //guardar bd la info
@@ -51,6 +61,13 @@ class admin extends Controller
 
         return redirect()->route("mainAdmin")->with("info", "usuario creado");
     }
+
+    // update
+    public function update()
+    {
+    }
+
+    // filtro para poder entrar
     public function mainAdmin()
     {
         if (Auth::id() != 1) {
@@ -59,5 +76,13 @@ class admin extends Controller
         //comprobar que esta validado
         //consulta a la bd del campo email_verified
         return view("admin.main");
+    }
+
+    // delete
+    public function destroy(Empresa $empresa)
+    {
+        $empresa->delete();
+
+        return redirect()->route('admin.main');
     }
 }
