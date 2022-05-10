@@ -53,12 +53,11 @@ class admin extends Controller
     }
     public function mainAdmin()
     {
-<<<<<<< HEAD
+        if (Auth::id() != 1) {
+            return redirect()->route("mainEmpresa");
+        }
         //comprobar que esta validado
         //consulta a la bd del campo email_verified
-=======
-        //comprobar que esta validado //consulta a la bd del campo email_verified
->>>>>>> yamil/main
         return view("admin.main");
     }
 }

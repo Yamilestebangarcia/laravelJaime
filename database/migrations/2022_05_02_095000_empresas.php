@@ -16,11 +16,18 @@ return new class extends Migration
         //Tabla de empresas
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('idEmpresa');
+            // llave foránea idUser
+            $table->unsignedBigInteger('idUserFK');
+            $table->foreign('idUserFK')
+                ->references('id')
+                ->on('create_users_table')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('cif')->unique();
             $table->string('nombreComercial')->unique();
             $table->enum('tipo', ['publico', 'privado']);
             $table->string('telefono')->unique();
-            $table->string('email')->unique();
+            $table->string('email')->unique();//lo cogemos de user
             $table->string('web')->nullable();
             $table->string('actividad')->nullable();
             $table->string('horario')->nullable();
