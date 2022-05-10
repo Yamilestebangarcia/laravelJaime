@@ -19,8 +19,8 @@ return new class extends Migration
             // llave foránea idUser
             $table->unsignedBigInteger('idUserFK');
             $table->foreign('idUserFK')
-                ->references('id')
-                ->on('create_users_table')
+                ->references('idUser')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('cif')->unique();
