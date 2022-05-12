@@ -16,13 +16,6 @@ use Illuminate\Support\Facades\DB;
 
 class admin extends Controller
 {
-    // index
-    public function index()
-    {
-        $empresas = DB::table('empresas')->get();
-        return view('admin.main', compact('empresas'));
-    }
-
     // create
     public function crearEmpresa()
     {
@@ -67,22 +60,40 @@ class admin extends Controller
     {
     }
 
-    // filtro para poder entrar
+    // filtro para poder entrar + index
     public function mainAdmin()
     {
         if (Auth::id() != 1) {
             return redirect()->route("mainEmpresa");
         }
-        //comprobar que esta validado
-        //consulta a la bd del campo email_verified
-        return view("admin.main");
+        $empresas = DB::table('empresas')->simplePaginate(env("PAGES_PAGINATION"));
+        return view('admin.main', compact('empresas'));
     }
 
-    // delete
-    public function destroy(Empresa $empresa)
-    {
-        $empresa->delete();
 
-        return redirect()->route('admin.main');
+    public function filtrar(Request $request)
+    {
+        // filtro para mostrar solo las empresas autorizadas
+        if ($request->filtro === "filtro1") {
+            $empresas = DB::table('empresas')->where('autorizado', '=', '1')->simplePaginate(env("PAGES_PAGINATION"));
+            return view('admin.main', compact('empresas'));
+        }
+    }
+
+    public function autorizarEmpresa($ids)
+    {
+        $arrayIds = explode(",", $ids);
+        foreach ($arrayIds as $id) {
+            DB::table('empresas')->where('idEmpresa', $id)->update(array('autorizado' => 1));
+        }
+        return redirect()->route('mainAdmin')->with('info', 'autorizada correctamente');
+    }
+    public function correoEmpresa()
+    {
+    }
+    public function eliminarEmpresa($ids)
+    {
+
+        return redirect()->route('mainAdmin');
     }
 }

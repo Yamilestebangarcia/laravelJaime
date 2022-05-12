@@ -29,4 +29,8 @@ Route::get('datosRegistro', [login::class, "dataRegister"])->name("dataRegister"
 Route::get('mainAdmin', [admin::class, "mainAdmin"])->name("mainAdmin")->middleware("auth");
 Route::get('crearEmpresa', [admin::class, "crearEmpresa"])->name("crearEmpresa")->middleware("auth");
 Route::post('crearEmpresaPost', [admin::class, "crearEmpresaPost"])->name("crearEmpresaPost")->middleware("auth");
+Route::get('autorizarEmpresa/{ids}', [admin::class, "autorizarEmpresa"])->name("autorizarEmpresa")->middleware("auth");
+Route::get('correoEmpresa/{ids}', [admin::class, "correoEmpresa"])->name("correoEmpresa")->middleware("auth");
+Route::get('eliminarEmpresa/{ids}', [admin::class, "eliminarEmpresa"])->name("eliminarEmpresa")->middleware("auth");
 Route::get('mainEmpresa', [empresa::class, "mainEmpresa"])->name("mainEmpresa")->middleware("auth");
+Route::post('filtrar', [admin::class, "filtrar"])->name("filtrar")->middleware("auth");

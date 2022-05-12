@@ -24,8 +24,6 @@ class empresaControler extends Controller
         $idUser = Auth::id();
         $user = DB::table("empresa")->where("idUser", "=", $idUser)->get();
 
-
-
         // return $user;
         return view("empresa.formRegistro", compact("user"));
     }
@@ -33,7 +31,7 @@ class empresaControler extends Controller
     public function dataRegisterPost(dataEmpresaRequest $request)
     {
         //crear un campo en la tabla empresa par guardar el id de la tabla de user y
-        //asi poder relacionarla 
+        //asi poder relacionarla
         $idUser = Auth::id();
         $empresa = new empresa();
         $empresa->cif = $request->cif;
