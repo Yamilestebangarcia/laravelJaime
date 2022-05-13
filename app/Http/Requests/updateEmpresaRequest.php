@@ -24,7 +24,7 @@ class updateEmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            "cif" => "required | exists:empresa,cif",
+            "cif" => "required | exists:empresas,cif",
             "nombre" => "required |  max:24 | min:2",
             "telefono" => "required | digits:9| numeric ",
             "web" => "nullable| url",

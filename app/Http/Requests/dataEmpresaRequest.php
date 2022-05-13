@@ -24,8 +24,8 @@ class dataEmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            "cif" => "required | unique:empresa,cif",
-            "nombre" => "required |  max:24 | min:2",
+            "cif" => "required | unique:empresas,cif",
+            "nombre" => "required | max:24 | min:2 | unique:empresas,nombreComercial",
             "telefono" => "required | digits:9| numeric ",
             "web" => "nullable| url",
             "actividad" => "nullable |  max:24 | min:2",

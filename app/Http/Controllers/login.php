@@ -97,8 +97,4 @@ class login extends Controller
 
         return redirect()->route("login")->with("info", "no existe token");
     }
-    public function dataRegister()
-    {
-        return view("empresa.formRegistro");
-    }
 }

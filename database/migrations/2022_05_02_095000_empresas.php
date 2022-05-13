@@ -19,7 +19,7 @@ return new class extends Migration
             // llave foránea idUser
             $table->unsignedBigInteger('idUserFK');
             $table->foreign('idUserFK')
-                ->references('idUser')
+                ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('nombreComercial')->unique();
             $table->enum('tipo', ['publico', 'privado']);
             $table->string('telefono')->unique();
-            $table->string('email')->unique();//lo cogemos de user
+            $table->string('email')->unique(); //lo cogemos de user
             $table->string('web')->nullable();
             $table->string('actividad')->nullable();
             $table->string('horario')->nullable();

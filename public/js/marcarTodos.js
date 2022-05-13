@@ -1,5 +1,6 @@
 const d = document,
-    $autorizar = d.getElementById("btn-autorizar");
+    $autorizar = d.getElementById("btn-autorizar"),
+    $correo = d.getElementById("btn-correo");
 
 const marcarTodo = (condicion) => {
     const marcado = d.querySelectorAll(".marcado");
@@ -69,5 +70,26 @@ d.addEventListener("click", (e) => {
         //console.log(url);
         location = url;
         //console.log(arrayId);
+    }
+    if (e.target.id === "btn-correo") {
+        const arrayChecked = d.querySelectorAll(".marcado");
+
+        const arrayId = [];
+
+        arrayChecked.forEach((el) => {
+            if (el.checked) {
+                arrayId.push(el.value);
+            }
+        });
+        console.log($correo.className.length);
+        const sin = $correo.className.substring(
+            0,
+            $autorizar.className.length - 5
+        );
+        console.log(sin);
+        let url = sin + "/" + arrayId;
+        //console.log(url);
+
+        location = url;
     }
 });

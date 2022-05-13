@@ -22,7 +22,7 @@ class empresaControler extends Controller
     public function dataRegister()
     {
         $idUser = Auth::id();
-        $user = DB::table("empresa")->where("idUser", "=", $idUser)->get();
+        $user = DB::table("empresas")->where("idUserFK", "=", $idUser)->get();
 
         // return $user;
         return view("empresa.formRegistro", compact("user"));
@@ -33,31 +33,37 @@ class empresaControler extends Controller
         //crear un campo en la tabla empresa par guardar el id de la tabla de user y
         //asi poder relacionarla
         $idUser = Auth::id();
-        $empresa = new empresa();
-        $empresa->cif = $request->cif;
-        $empresa->idUser = $idUser;
-        $empresa->nombre = $request->nombre;
-        $empresa->tipo = $request->tipo;
-        $empresa->web = $request->web;
-        $empresa->telefono = $request->telefono;
-        $empresa->actividad = $request->actividad;
-        $empresa->horario = $request->horario;
-        $empresa->observaciones = $request->observaciones;
-        $empresa->save();
+        $user = DB::table("users")->where("id", "=", $idUser)->get();
+
+        DB::table("empresas")->insert([
+            "idUserFK" => $idUser,
+            "cif" => $request->cif,
+            "email" => $user[0]->email,
+            "nombreComercial" => $request->nombre,
+            "autorizado" => 0,
+            "tipo" => $request->tipo,
+            "web" => $request->web,
+            "telefono" => $request->telefono,
+            "actividad" => $request->actividad,
+            "horario" => $request->horario,
+            "observaciones" => $request->observaciones
+        ]);
+
+
 
         return redirect()->route("dataRegister")->with("info", "Datos guardados");
     }
     public function UpdateDatosRegistro(updateEmpresaRequest $request)
     {
         $idUser = Auth::id();
-        $empresa = DB::table("empresa")->where("idUser", "=", $idUser)->update([
+        $empresa = DB::table("empresas")->where("idUserFK", "=", $idUser)->update([
             "tipo" => $request->tipo,
             "web" => $request->web,
             "telefono" => $request->telefono,
             "actividad" => $request->actividad,
             "horario" => $request->horario,
             "observaciones" => $request->observaciones,
-            "nombre" => $request->nombre
+            "nombreComercial" => $request->nombre
         ]);
 
 
